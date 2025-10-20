@@ -1,0 +1,31 @@
+# OSM 기반 멀티모달 RAPTOR 시스템 의존성 패키지
+
+# 핵심 라이브러리
+streamlit>=1.28.0
+folium>=0.14.0
+streamlit-folium>=0.13.0
+
+# 데이터 처리
+pandas>=1.5.0
+numpy>=1.21.0
+networkx>=2.8.0
+
+# 시각화
+plotly>=5.11.0
+
+# 지리 정보 처리
+geopy>=2.3.0
+
+# 표준 라이브러리 (참고용)
+# pickle - Python 내장
+# datetime - Python 내장
+# math - Python 내장
+# logging - Python 내장
+# sys - Python 내장
+# os - Python 내장
+# time - Python 내장
+
+# 개발 및 테스트 (선택사항)
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=4.0.0
