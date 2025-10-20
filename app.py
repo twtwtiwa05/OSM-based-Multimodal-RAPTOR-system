@@ -245,6 +245,24 @@ def main():
         if 'destination' not in st.session_state:
             st.session_state.destination = None
         
+        # 출발지 마커 추가
+        if st.session_state.origin:
+            folium.Marker(
+                location=[st.session_state.origin[0], st.session_state.origin[1]],
+                popup="출발지",
+                tooltip="출발지",
+                icon=folium.Icon(color='green', icon='play')
+            ).add_to(base_map)
+        
+        # 목적지 마커 추가
+        if st.session_state.destination:
+            folium.Marker(
+                location=[st.session_state.destination[0], st.session_state.destination[1]],
+                popup="목적지", 
+                tooltip="목적지",
+                icon=folium.Icon(color='red', icon='stop')
+            ).add_to(base_map)
+        
         # 지도 클릭 이벤트 처리
         map_data = st_folium(base_map, width=700, height=500, returned_objects=["last_clicked"])
         
