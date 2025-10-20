@@ -145,17 +145,24 @@ def display_journey_details(journeys, preference):
         
         # 경로 단계별 정보
         for i, leg in enumerate(journey.legs):
-            with st.expander(f"단계 {i+1}: {leg.mode.value if hasattr(leg.mode, 'value') else leg.mode}"):
-                if hasattr(leg, 'route_name') and leg.route_name:
-                    st.write(f"**노선**: {leg.route_name}")
-                if hasattr(leg, 'from_stop') and leg.from_stop:
-                    st.write(f"**출발**: {leg.from_stop.stop_name}")
-                if hasattr(leg, 'to_stop') and leg.to_stop:
-                    st.write(f"**도착**: {leg.to_stop.stop_name}")
-                if hasattr(leg, 'duration'):
-                    st.write(f"**소요시간**: {leg.duration:.1f}분")
-                if hasattr(leg, 'cost'):
-                    st.write(f"**비용**: {leg.cost:.0f}원")
+            leg_type = leg.get('type', '알 수 없음')
+            with st.expander(f"단계 {i+1}: {leg_type}"):
+                if 'route_name' in leg and leg['route_name']:
+                    st.write(f"**노선**: {leg['route_name']}")
+                if 'from' in leg:
+                    st.write(f"**출발**: {leg['from']}")
+                if 'to' in leg:
+                    st.write(f"**도착**: {leg['to']}")
+                if 'duration' in leg:
+                    st.write(f"**소요시간**: {leg['duration']:.1f}분")
+                if 'cost' in leg:
+                    st.write(f"**비용**: {leg['cost']:.0f}원")
+                if 'departure_time' in leg:
+                    dep_h, dep_m = divmod(int(leg['departure_time']), 60)
+                    st.write(f"**출발시간**: {dep_h:02d}:{dep_m:02d}")
+                if 'arrival_time' in leg:
+                    arr_h, arr_m = divmod(int(leg['arrival_time']), 60)
+                    st.write(f"**도착시간**: {arr_h:02d}:{arr_m:02d}")
 
 def create_performance_chart(raptor_stats):
     """성능 차트 생성"""
