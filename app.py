@@ -233,7 +233,7 @@ def main():
     
     with col1:
         st.subheader("인터랙티브 지도")
-        st.info("**사용법**: 지도에서 출발지와 목적지를 클릭하여 선택하세요!")
+        st.info("💡 **사용법**: 지도를 클릭하세요! 첫 번째 클릭은 출발지, 두 번째 클릭은 목적지로 자동 설정됩니다.")
         
         # 지도 표시
         base_map = create_base_map()
@@ -269,18 +269,23 @@ def main():
             clicked_lat = map_data["last_clicked"]["lat"]
             clicked_lng = map_data["last_clicked"]["lng"]
             
-            # 출발지/목적지 설정 버튼
-            col_origin, col_dest = st.columns(2)
-            
-            with col_origin:
-                if st.button("출발지로 설정"):
-                    st.session_state.origin = (clicked_lat, clicked_lng)
-                    st.success(f"출발지 설정: ({clicked_lat:.4f}, {clicked_lng:.4f})")
-            
-            with col_dest:
-                if st.button("목적지로 설정"):
-                    st.session_state.destination = (clicked_lat, clicked_lng)
-                    st.success(f"목적지 설정: ({clicked_lat:.4f}, {clicked_lng:.4f})")
+            # 자동으로 출발지 -> 목적지 순서로 설정
+            if not st.session_state.origin:
+                # 첫 번째 클릭: 출발지 설정
+                st.session_state.origin = (clicked_lat, clicked_lng)
+                st.success(f"✅ 출발지 설정: ({clicked_lat:.4f}, {clicked_lng:.4f})")
+                st.info("📍 이제 목적지를 클릭하세요!")
+            elif not st.session_state.destination:
+                # 두 번째 클릭: 목적지 설정
+                st.session_state.destination = (clicked_lat, clicked_lng)
+                st.success(f"🎯 목적지 설정: ({clicked_lat:.4f}, {clicked_lng:.4f})")
+                st.info("🚀 이제 경로 탐색 버튼을 눌러주세요!")
+            else:
+                # 이미 둘 다 설정된 경우: 다시 출발지부터 설정
+                st.session_state.origin = (clicked_lat, clicked_lng)
+                st.session_state.destination = None
+                st.success(f"🔄 새 출발지 설정: ({clicked_lat:.4f}, {clicked_lng:.4f})")
+                st.info("📍 이제 목적지를 클릭하세요!")
     
     with col2:
         st.subheader("선택된 위치")
