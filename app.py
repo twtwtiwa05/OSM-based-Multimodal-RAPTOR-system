@@ -125,7 +125,7 @@ def display_journey_details(journeys, preference):
             "경로": f"경로 {i+1}",
             "총 시간": f"{journey.total_time:.1f}분",
             "비용": f"{journey.total_cost:.0f}원",
-            "환승": f"{journey.transfer_count}회",
+            "환승": f"{journey.transfers}회",
             "도보": f"{journey.total_walk_distance:.0f}m",
             "점수": f"{journey.get_score(preference):.2f}"
         })
