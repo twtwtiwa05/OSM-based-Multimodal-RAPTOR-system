@@ -97,7 +97,7 @@ def add_route_to_map(map_obj, journey, journey_idx=0):
                 color=color,
                 weight=4,
                 opacity=0.8,
-                popup=f"경로 {journey_idx+1}: {leg.mode.value if hasattr(leg.mode, 'value') else leg.mode}"
+                popup=f"경로 {journey_idx+1}: {leg.get('type', '알 수 없음')}"
             ).add_to(map_obj)
         
         # 정류장/포인트 마커
@@ -131,7 +131,7 @@ def display_journey_details(journeys, preference):
         })
     
     df = pd.DataFrame(journey_data)
-    st.dataframe(df, use_container_width=True)
+    st.dataframe(df, width='stretch')
     
     # 선택된 경로 상세 정보
     selected_route = st.selectbox("상세 보기할 경로를 선택하세요:", 
@@ -185,7 +185,7 @@ def create_performance_chart(raptor_stats):
         # 도달 가능한 정류장 수 차트
         fig = px.bar(df_rounds, x='Round', y='Reachable Stops',
                     title="라운드별 도달 가능한 정류장 수")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
 def main():
     """메인 애플리케이션"""
@@ -312,7 +312,7 @@ def main():
         st.write("---")
         
         # 경로 탐색 버튼
-        if st.button("경로 탐색", type="primary", use_container_width=True):
+        if st.button("경로 탐색", type="primary", width='stretch'):
             if not st.session_state.origin or not st.session_state.destination:
                 st.error("출발지와 목적지를 모두 선택해주세요!")
             else:
@@ -343,7 +343,7 @@ def main():
                         st.session_state.journeys = None
         
         # 위치 초기화 버튼
-        if st.button("위치 초기화", use_container_width=True):
+        if st.button("위치 초기화", width='stretch'):
             st.session_state.origin = None
             st.session_state.destination = None
             if 'journeys' in st.session_state:
