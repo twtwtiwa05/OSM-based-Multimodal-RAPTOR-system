@@ -15,6 +15,7 @@ plotly>=5.11.0
 
 # 지리 정보 처리
 geopy>=2.3.0
+scipy>=1.9.0
 
 # 표준 라이브러리 (참고용)
 # pickle - Python 내장

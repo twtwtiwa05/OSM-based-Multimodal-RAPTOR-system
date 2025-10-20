@@ -26,14 +26,14 @@ try:
     OSMNX_AVAILABLE = True
 except ImportError:
     OSMNX_AVAILABLE = False
-    print("⚠️ OSMnx 미설치 - 기본 그리드 네트워크 사용")
+    # OSM 데이터는 이미 전처리되어 road_network.pkl에 저장됨
 
 try:
     from scipy.spatial import KDTree
     SCIPY_AVAILABLE = True
 except ImportError:
     SCIPY_AVAILABLE = False
-    print("⚠️ SciPy 미설치 - 기본 환승 네트워크 사용")
+    # SciPy 없이도 기본 환승 네트워크 사용 가능
 
 # ============================================================================
 # 데이터 구조 정의
