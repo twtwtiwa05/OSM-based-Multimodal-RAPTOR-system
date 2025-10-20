@@ -186,18 +186,7 @@ preference = RoutePreference(
 4. **Push** 브랜치: `git push origin feature/amazing-feature`
 5. **Pull Request** 생성
 
-## 로드맵
 
-### v2.0 (계획)
-- [ ] 실시간 교통 정보 통합
-- [ ] 다중 도시 지원 확장
-- [ ] REST API 제공
-- [ ] 모바일 앱 연동
-
-### v1.5 (개발 중)
-- [ ] 접근성 옵션 (휠체어, 엘리베이터)
-- [ ] 탄소 발자국 계산
-- [ ] 비용 예측 모델
 
 ## 라이선스
 
@@ -223,5 +212,6 @@ preference = RoutePreference(
 - 이메일: twdaniel@gachon.ac.kr
 
 ---
+
 
 **이 프로젝트가 도움이 되셨다면 Star를 눌러주세요!**
