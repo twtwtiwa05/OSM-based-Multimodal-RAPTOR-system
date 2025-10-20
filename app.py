@@ -153,16 +153,8 @@ def display_journey_details(journeys, preference):
                     st.write(f"**출발**: {leg['from']}")
                 if 'to' in leg:
                     st.write(f"**도착**: {leg['to']}")
-                if 'duration' in leg:
-                    st.write(f"**소요시간**: {leg['duration']:.1f}분")
                 if 'cost' in leg:
                     st.write(f"**비용**: {leg['cost']:.0f}원")
-                if 'departure_time' in leg:
-                    dep_h, dep_m = divmod(int(leg['departure_time']), 60)
-                    st.write(f"**출발시간**: {dep_h:02d}:{dep_m:02d}")
-                if 'arrival_time' in leg:
-                    arr_h, arr_m = divmod(int(leg['arrival_time']), 60)
-                    st.write(f"**도착시간**: {arr_h:02d}:{arr_m:02d}")
 
 def create_performance_chart(raptor_stats):
     """성능 차트 생성"""
